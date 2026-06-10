@@ -15,57 +15,53 @@
 </script>
 
 <svelte:head>
-	<title>Sign In — Lalo Import & Export</title>
+	<title>Sign In — Abyssinniya AI</title>
 </svelte:head>
 
-<div class="flex min-h-screen bg-[#162734] text-white">
+<div class="flex min-h-screen bg-[var(--ink)] text-[var(--txt)]">
 	<!-- Left -->
 	<aside
-		class="hidden w-105 shrink-0 flex-col justify-between border-r border-white/5 px-10 py-10 lg:flex"
+		class="hidden w-105 shrink-0 flex-col justify-between border-r border-[var(--stroke-soft)] px-10 py-10 lg:flex"
 	>
 		<div>
 			<div class="mb-16 flex items-center gap-3">
-				<div class="flex h-9 w-9 items-center justify-center rounded-md border border-white/15">
-					<svg
-						width="18"
-						height="18"
-						viewBox="0 0 18 18"
-						fill="none"
-						xmlns="http://www.w3.org/2000/svg"
-					>
-						<path d="M2 9L9 2L16 9L9 16L2 9Z" stroke="#94b8cc" stroke-width="1.5" />
-						<path d="M5 9L9 5L13 9L9 13L5 9Z" fill="#94b8cc" opacity="0.35" />
+				<div
+					class="flex h-9 w-9 items-center justify-center rounded-md border border-[var(--stroke)] bg-[var(--glass)]"
+				>
+					<svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+						<path d="M2 9L9 2L16 9L9 16L2 9Z" stroke="var(--gold)" stroke-width="1.5" />
+						<path d="M5 9L9 5L13 9L9 13L5 9Z" fill="var(--green)" opacity="0.45" />
 					</svg>
 				</div>
 
 				<div>
 					<p class="text-lg tracking-[0.12em]" style="font-family: 'Cormorant Garamond', serif;">
-						LALO
+						ABYSSINNIYA AI
 					</p>
-					<p class="text-xs text-white/35">Import & Export</p>
+					<p class="text-xs text-[var(--muted-2)]">Intelligent Systems</p>
 				</div>
 			</div>
 
 			<div class="max-w-sm">
-				<p class="mb-3 text-xs tracking-[0.18em] text-[#94b8cc]/50 uppercase">
-					Global Trade Solutions
+				<p class="mb-3 text-xs tracking-[0.18em] text-[var(--gold-soft)] uppercase">
+					AI-Powered Solutions
 				</p>
 
 				<h1
-					class="mb-5 text-3xl leading-tight text-white/90"
+					class="mb-5 text-3xl leading-tight text-[var(--txt)]"
 					style="font-family: 'Cormorant Garamond', serif;"
 				>
-					Connecting businesses through reliable international trade.
+					Building intelligent tools for modern businesses.
 				</h1>
 
-				<p class="text-sm leading-7 text-white/45">
-					Secure access to logistics, procurement, and operational systems.
+				<p class="text-sm leading-7 text-[var(--muted)]">
+					Secure access to AI workflows, automation tools, and operational intelligence.
 				</p>
 			</div>
 		</div>
 
-		<p class="text-xs text-white/20">
-			© {new Date().getFullYear()} Lalo Import & Export
+		<p class="text-xs text-[var(--muted-2)]">
+			© {new Date().getFullYear()} Abyssinniya AI
 		</p>
 	</aside>
 
@@ -74,49 +70,48 @@
 		<div class="w-full max-w-md">
 			<!-- Mobile Logo -->
 			<div class="mb-10 flex items-center gap-3 lg:hidden">
-				<div class="flex h-8 w-8 items-center justify-center rounded-md border border-white/15">
-					<svg
-						width="16"
-						height="16"
-						viewBox="0 0 18 18"
-						fill="none"
-						xmlns="http://www.w3.org/2000/svg"
-					>
-						<path d="M2 9L9 2L16 9L9 16L2 9Z" stroke="#94b8cc" stroke-width="1.5" />
-						<path d="M5 9L9 5L13 9L9 13L5 9Z" fill="#94b8cc" opacity="0.35" />
+				<div
+					class="flex h-8 w-8 items-center justify-center rounded-md border border-[var(--stroke)] bg-[var(--glass)]"
+				>
+					<svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+						<path d="M2 9L9 2L16 9L9 16L2 9Z" stroke="var(--gold)" stroke-width="1.5" />
+						<path d="M5 9L9 5L13 9L9 13L5 9Z" fill="var(--green)" opacity="0.45" />
 					</svg>
 				</div>
 
 				<div>
 					<p class="text-base tracking-[0.12em]" style="font-family: 'Cormorant Garamond', serif;">
-						LALO
+						ABYSSINNIYA AI
 					</p>
-					<p class="text-xs text-white/35">Import & Export</p>
+					<p class="text-xs text-[var(--muted-2)]">Intelligent Systems</p>
 				</div>
 			</div>
 
 			<!-- Header -->
 			<div class="mb-8">
-				<h2 class="text-3xl text-white" style="font-family: 'Cormorant Garamond', serif;">
+				<h2 class="text-3xl text-[var(--txt)]" style="font-family: 'Cormorant Garamond', serif;">
 					Sign In
 				</h2>
 
-				<p class="mt-2 text-sm text-white/40">Enter your credentials to continue</p>
+				<p class="mt-2 text-sm text-[var(--muted-2)]">Enter your credentials to continue</p>
 			</div>
 
 			<!-- Server Message -->
 			{#if $message}
 				<div
-					class="mb-5 rounded-md border border-red-400/20 bg-red-400/5 px-4 py-3 text-sm text-red-200"
+					class="mb-5 rounded-md border border-[var(--red)]/30 bg-[var(--red)]/10 px-4 py-3 text-sm text-red-200"
 				>
 					{$message.text}
 				</div>
 			{/if}
 
-			<form method="POST" action="?/login" use:enhance class="space-y-5">
+			<form method="POST" id="login" action="?/login" use:enhance class="space-y-5">
 				<!-- Email -->
 				<div>
-					<label for="email" class="mb-2 block text-xs tracking-[0.14em] text-white/45 uppercase">
+					<label
+						for="email"
+						class="mb-2 block text-xs tracking-[0.14em] text-[var(--muted)] uppercase"
+					>
 						Email
 					</label>
 
@@ -128,8 +123,8 @@
 						bind:value={$form.email}
 						placeholder="you@company.com"
 						aria-invalid={$errors.email ? 'true' : undefined}
-						class="w-full rounded-md border bg-white/[0.04] px-4 py-3 text-sm text-white transition-all duration-200 outline-none placeholder:text-white/20 focus:border-[#94b8cc]/40"
-						style:border-color={$errors.email ? 'rgba(239,68,68,0.45)' : 'rgba(255,255,255,0.08)'}
+						class="w-full rounded-md border bg-[var(--glass-2)] px-4 py-3 text-sm text-[var(--txt)] transition-all duration-200 outline-none placeholder:text-[var(--muted-2)] focus:border-[var(--gold)]/50"
+						style:border-color={$errors.email ? 'rgba(196,42,12,0.55)' : 'var(--stroke-soft)'}
 					/>
 
 					{#if $errors.email}
@@ -142,13 +137,13 @@
 				<!-- Password -->
 				<div>
 					<div class="mb-2 flex items-center justify-between">
-						<label for="password" class="text-xs tracking-[0.14em] text-white/45 uppercase">
+						<label for="password" class="text-xs tracking-[0.14em] text-[var(--muted)] uppercase">
 							Password
 						</label>
 
 						<a
 							href="/forgot-password"
-							class="text-xs text-[#94b8cc]/70 transition hover:text-[#94b8cc]"
+							class="text-xs text-[var(--gold-soft)] transition hover:text-[var(--gold)]"
 						>
 							Forgot password?
 						</a>
@@ -163,16 +158,14 @@
 							bind:value={$form.password}
 							placeholder="••••••••"
 							aria-invalid={$errors.password ? 'true' : undefined}
-							class="w-full rounded-md border bg-white/[0.04] px-4 py-3 pr-11 text-sm text-white transition-all duration-200 outline-none placeholder:text-white/20 focus:border-[#94b8cc]/40"
-							style:border-color={$errors.password
-								? 'rgba(239,68,68,0.45)'
-								: 'rgba(255,255,255,0.08)'}
+							class="w-full rounded-md border bg-[var(--glass-2)] px-4 py-3 pr-11 text-sm text-[var(--txt)] transition-all duration-200 outline-none placeholder:text-[var(--muted-2)] focus:border-[var(--gold)]/50"
+							style:border-color={$errors.password ? 'rgba(196,42,12,0.55)' : 'var(--stroke-soft)'}
 						/>
 
 						<button
 							type="button"
 							onclick={() => (showPassword = !showPassword)}
-							class="absolute top-1/2 right-3 -translate-y-1/2 text-white/35 transition hover:text-white/70"
+							class="absolute top-1/2 right-3 -translate-y-1/2 text-[var(--muted-2)] transition hover:text-[var(--txt)]"
 							aria-label={showPassword ? 'Hide password' : 'Show password'}
 						>
 							{#if showPassword}
@@ -216,18 +209,19 @@
 				<!-- Submit -->
 				<button
 					type="submit"
+					form="login"
 					disabled={$submitting}
-					class="mt-2 w-full rounded-md bg-[#94b8cc] py-3 text-sm font-semibold tracking-[0.08em] text-[#142938] transition-all duration-200 hover:bg-[#aac7d8] disabled:cursor-not-allowed disabled:opacity-60"
+					class="mt-2 w-full rounded-md bg-[var(--gold)] py-3 text-sm font-semibold tracking-[0.08em] text-[var(--ink)] transition-all duration-200 hover:bg-[var(--amber)] disabled:cursor-not-allowed disabled:opacity-60"
 				>
 					{$submitting ? 'Signing in…' : 'Sign In'}
 				</button>
 			</form>
 
 			<!-- Footer -->
-			<div class="mt-8 border-t border-white/5 pt-6">
-				<p class="text-center text-xs text-white/25">
+			<div class="mt-8 border-t border-[var(--stroke-soft)] pt-6">
+				<p class="text-center text-xs text-[var(--muted-2)]">
 					Need access?
-					<a href="/contact" class="text-[#94b8cc]/70 transition hover:text-[#94b8cc]">
+					<a href="/contact" class="text-[var(--gold-soft)] transition hover:text-[var(--gold)]">
 						Contact administrator
 					</a>
 				</p>
@@ -237,18 +231,45 @@
 </div>
 
 <style>
+	:root {
+		--red: #c42a0c;
+		--red-deep: #9a1c04;
+		--orange: #f08a1d;
+		--amber: #f9bc47;
+		--gold: #eba417;
+		--gold-soft: #dcb33d;
+		--green: #3a8a12;
+		--green-mid: #2e6c0b;
+		--green-deep: #16400f;
+		--ink: #070b07;
+		--glass: rgba(255, 255, 255, 0.075);
+		--glass-2: rgba(255, 255, 255, 0.055);
+		--stroke: rgba(255, 255, 255, 0.18);
+		--stroke-soft: rgba(255, 255, 255, 0.11);
+		--txt: #f3f1ea;
+		--muted: #a9b2a4;
+		--muted-2: #8a937f;
+		--brand-grad: linear-gradient(
+			90deg,
+			var(--red) 0%,
+			var(--orange) 30%,
+			var(--gold) 52%,
+			var(--green) 100%
+		);
+	}
+
 	:global(body) {
 		margin: 0;
 		padding: 0;
-		background: #162734;
+		background: var(--ink);
 		font-family: 'Outfit', sans-serif;
 	}
 
 	input:-webkit-autofill,
 	input:-webkit-autofill:hover,
 	input:-webkit-autofill:focus {
-		-webkit-text-fill-color: white;
-		-webkit-box-shadow: 0 0 0px 1000px #1c3140 inset;
+		-webkit-text-fill-color: var(--txt);
+		-webkit-box-shadow: 0 0 0px 1000px #101810 inset;
 		transition: background-color 5000s ease-in-out 0s;
 	}
 </style>

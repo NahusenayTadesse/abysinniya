@@ -168,7 +168,7 @@ linear-gradient(135deg,#070b07_0%,#0b1209_35%,#10160d_65%,#070b07_100%)]"
 					<img
 						src="/logo.png"
 						alt="Abyssiniya AI"
-						class="h-16 shadow-lg shadow-orange-900/30 rounded-lg"
+						class="h-1 shadow-lg shadow-orange-900/30 rounded-lg"
 					/>
 				</div>
 			</a>

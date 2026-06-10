@@ -15,6 +15,54 @@
 	];
 </script>
 
+<svelte:head>
+	<title>Abyssiniya AI — Intelligent AI Solutions for Africa</title>
+
+	<meta
+		name="description"
+		content="Abyssiniya AI builds intelligent AI-powered solutions, automation tools, and digital systems designed for businesses, organizations, and innovators across Africa."
+	/>
+
+	<meta
+		name="keywords"
+		content="Abyssiniya AI, AI Ethiopia, Artificial Intelligence Africa, Machine Learning, Automation, Business Intelligence, AI Solutions, Ethiopian Technology, Digital Transformation"
+	/>
+
+	<meta name="author" content="Abyssiniya AI" />
+	<meta name="robots" content="index, follow" />
+
+	<link rel="canonical" href="https://abyssiniya.ai" />
+
+	<!-- Open Graph -->
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://abyssiniya.ai" />
+	<meta property="og:site_name" content="Abyssiniya AI" />
+	<meta property="og:title" content="Abyssiniya AI — Intelligent AI Solutions for Africa" />
+	<meta
+		property="og:description"
+		content="Building intelligent AI-powered solutions, automation systems, and digital experiences for the next generation of African innovation."
+	/>
+	<meta property="og:image" content="/logo.png" />
+	<meta property="og:image:alt" content="Abyssiniya AI Logo" />
+
+	<!-- Twitter / X -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:url" content="https://abyssiniya.ai" />
+	<meta name="twitter:title" content="Abyssiniya AI — Intelligent AI Solutions for Africa" />
+	<meta
+		name="twitter:description"
+		content="Building intelligent AI-powered solutions, automation systems, and digital experiences for the next generation of African innovation."
+	/>
+	<meta name="twitter:image" content="/logo.png" />
+
+	<!-- Theme -->
+	<meta name="theme-color" content="#070b07" />
+
+	<!-- Favicon -->
+	<link rel="icon" href="/logo.png" />
+	<link rel="apple-touch-icon" href="/logo.png" />
+</svelte:head>
+
 {#snippet fe(
 	label = '',
 	name = '',
