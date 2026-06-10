@@ -7,6 +7,15 @@ node_modules
 .wrangler
 /.svelte-kit
 /build
+build.tar
+node_modules.tar.gz
+
+local.db
+local.db-wal
+local.db-shm
+
+
+
 
 # OS
 .DS_Store
