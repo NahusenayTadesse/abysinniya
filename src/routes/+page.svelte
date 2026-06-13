@@ -1,17 +1,117 @@
 <script lang="ts">
 	let { data } = $props();
-	import { SendIcon } from '@lucide/svelte';
+
+	import { SendIcon, Loader } from '@lucide/svelte';
 	import { superForm } from 'sveltekit-superforms/client';
+	import Home from './home.svelte';
+
 	const { form, errors, enhance, delayed, message } = superForm(data.form, {
 		dataType: 'json'
 	});
 
-	import Home from './home.svelte';
+	const applicantTypes = [
+		'Individual',
+		'Business',
+		'Government Organization',
+		'NGO or Nonprofit',
+		'School or University',
+		'Training Institution',
+		'Startup',
+		'Freelancer',
+		'Other'
+	];
 
 	const packages = [
-		'AI Foundation Program',
+		'AI Agents',
+		'Smart Chatbots',
+		'AI-Powered Websites',
+		'Mobile Apps with AI',
+		'Business Automation',
+		'AI-Powered ERP',
+		'Corporate AI Training',
+		'Individual AI Courses',
+		'Custom AI Solutions',
+		'AI Essentials',
 		'Professional AI Certification',
 		'Business AI Transformation'
+	];
+
+	const aiTopics = [
+		'Introduction to Artificial Intelligence',
+		'Generative AI',
+		'Prompt Engineering',
+		'ChatGPT and AI Productivity Tools',
+		'AI for Document Writing',
+		'AI for Research and Summarization',
+		'AI for Presentations',
+		'AI for Data Analysis',
+		'AI for Marketing and Content Creation',
+		'AI for Customer Service',
+		'AI Chatbots',
+		'AI Voice Agents',
+		'Sales Automation',
+		'Workflow Automation',
+		'No-Code AI Tools',
+		'AI Agents',
+		'AI for Software Development',
+		'Building AI-Powered Applications',
+		'Responsible and Ethical AI',
+		'AI Governance and Organizational Policy',
+		'AI Strategy for Businesses'
+	];
+
+	const goals = [
+		'Understand the basics of AI',
+		'Improve my career opportunities',
+		'Earn an AI certificate',
+		'Start a career in AI',
+		'Build AI applications',
+		'Automate repetitive tasks',
+		'Improve customer support',
+		'Generate more sales',
+		'Train my employees'
+	];
+
+	const experienceLevels = [
+		'I have never used AI tools',
+		'I have used ChatGPT or similar tools occasionally',
+		'I regularly use AI tools for work',
+		'I understand prompt engineering',
+		'I have worked with automation tools',
+		'I have built chatbots or AI applications',
+		'I am an experienced technical professional'
+	];
+
+	const packageIncludes = [
+		'Online instructor-led training',
+		'Onsite business training',
+		'Practical exercises',
+		'Training materials',
+		'Prompt templates',
+		'AI tool recommendations',
+		'Practical project',
+		'Certificate of completion',
+		'AI adoption roadmap',
+		'Custom chatbot',
+		'AI voice agent',
+		'Business automation setup'
+	];
+
+	const participantCounts = [
+		'Only me',
+		'2–5 participants',
+		'6–10 participants',
+		'11–25 participants',
+		'26–50 participants',
+		'More than 50 participants'
+	];
+
+	const trainingModes = [
+		'Online training',
+		'Onsite training',
+		'Hybrid training',
+		'Consultation first',
+		'Not sure yet'
 	];
 </script>
 
@@ -79,6 +179,7 @@
 
 		{#if type === 'textarea'}
 			<textarea
+				id={name}
 				{name}
 				{placeholder}
 				{required}
@@ -88,6 +189,7 @@
 			></textarea>
 		{:else}
 			<input
+				id={name}
 				{type}
 				{name}
 				{placeholder}
@@ -109,8 +211,7 @@
 {#snippet selection(
 	label = '',
 	name = '',
-	type = '',
-	placeholder = '',
+	placeholder = 'Select an option',
 	required = false,
 	items = []
 )}
@@ -122,13 +223,46 @@
 		<select
 			id={name}
 			{name}
-			class="w-full rounded-xl border border-[var(--stroke)] bg-[var(--glass)] px-4 py-3 text-[var(--txt)] placeholder:text-[var(--muted-2)] backdrop-blur-xl transition-all duration-300 focus:border-[var(--gold)] focus:ring-2 focus:ring-[var(--gold)]/20 focus:outline-none"
+			{required}
+			bind:value={$form[name]}
+			class="w-full rounded-xl border border-[var(--stroke)] bg-[var(--glass)] px-4 py-3 text-[var(--txt)] backdrop-blur-xl transition-all duration-300 focus:border-[var(--gold)] focus:ring-2 focus:ring-[var(--gold)]/20 focus:outline-none"
 			aria-invalid={$errors[name] ? 'true' : undefined}
 		>
+			<option class="text-black" value="">{placeholder}</option>
+
 			{#each items as item}
 				<option class="text-black" value={item}>{item}</option>
 			{/each}
 		</select>
+
+		{#if $errors[name]}
+			<span class="text-sm text-[var(--red)]">{$errors[name]}</span>
+		{/if}
+	</div>
+{/snippet}
+
+{#snippet multiSelection(label = '', name = '', items = [])}
+	<div class="flex w-full flex-col gap-3">
+		<label class="text-sm font-medium tracking-wide text-[var(--txt)]">
+			{label}
+		</label>
+
+		<div
+			class="grid gap-3 rounded-xl border border-[var(--stroke)] bg-[var(--glass)] p-4 backdrop-blur-xl sm:grid-cols-2"
+		>
+			{#each items as item}
+				<label class="flex items-start gap-3 text-sm leading-6 text-[var(--muted)]">
+					<input
+						type="checkbox"
+						name={`${name}[]`}
+						value={item}
+						bind:group={$form[name]}
+						class="mt-1 accent-[var(--gold)]"
+					/>
+					<span>{item}</span>
+				</label>
+			{/each}
+		</div>
 
 		{#if $errors[name]}
 			<span class="text-sm text-[var(--red)]">{$errors[name]}</span>
@@ -200,44 +334,79 @@
 							{@render fe('Full Name', 'fullName', 'text', 'Enter your full name', true)}
 							{@render fe('Email Address', 'email', 'email', 'your@email.com')}
 							{@render fe('Phone Number', 'phone', 'tel', '+251 901020304')}
-							{@render fe('Company', 'company', 'text', 'Company name')}
-							{@render fe('Country', 'country', 'text', 'Ethiopia')}
-							{@render selection(
-								'Package Selected',
-								'packageSelected',
+							{@render fe(
+								'Company / Organization',
+								'company',
 								'text',
-								'Starter / Premium',
+								'Company or organization name'
+							)}
+							{@render fe('Country', 'country', 'text', 'Ethiopia')}
+
+							{@render selection(
+								'Who are you?',
+								'applicantType',
+								'Select applicant type',
+								false,
+								applicantTypes
+							)}
+
+							{@render selection(
+								'Package or Service Interested In',
+								'packageSelected',
+								'Select a package or service',
 								false,
 								packages
 							)}
+
+							{@render selection('Main Goal', 'mainGoal', 'Select your main goal', false, goals)}
+
 							{@render selection(
-								'Inquiry Type',
-								'inquiryType',
-								'text',
-								'Branding, campaign, product launch...',
+								'Current AI Experience',
+								'experienceLevel',
+								'Select your experience level',
 								false,
-								['Branding', 'Campaign', 'Product Launch']
+								experienceLevels
 							)}
+
 							{@render selection(
-								'Product Type',
-								'productType',
-								'text',
-								'Service, product, event...',
+								'How many people will participate?',
+								'participantCount',
+								'Select participant count',
 								false,
-								['Service', 'Product', 'Event']
+								participantCounts
 							)}
-							{@render fe('Budget Range', 'budgetRange', 'text', 'ETB 1,000 - ETB 5,000')}
-							{@render fe('Launch Date', 'launchDate', 'date')}
+
+							{@render selection(
+								'Preferred Training / Delivery Mode',
+								'preferredTrainingMode',
+								'Select delivery mode',
+								false,
+								trainingModes
+							)}
+
+							{@render fe(
+								'Budget Range',
+								'budgetRange',
+								'text',
+								'Example: ETB 50,000 - ETB 150,000'
+							)}
+							{@render fe('Preferred Start Date', 'preferredStartDate', 'date')}
 						</div>
 
-						{@render fe(
-							'Campaign Goal',
-							'campaignGoal',
-							'textarea',
-							'Tell us what you want to achieve...'
+						{@render multiSelection(
+							'AI Topics You Are Interested In',
+							'topicsInterested',
+							aiTopics
 						)}
 
-						{@render fe('Message', 'message', 'textarea', 'Tell us more about your inquiry...')}
+						{@render multiSelection('What Should Be Included?', 'packageIncludes', packageIncludes)}
+
+						{@render fe(
+							'Message',
+							'message',
+							'textarea',
+							'Tell us more about your goals, business challenge, team, or project...'
+						)}
 
 						<button
 							type="submit"
@@ -252,15 +421,6 @@
 								Send Inquiry
 							{/if}
 						</button>
-						{#if $message}
-							<div
-								class:success={$message.type === 'success'}
-								class:error={$message.type === 'error'}
-								class="message"
-							>
-								{$message.text}
-							</div>
-						{/if}
 					</form>
 				</div>
 			</div>

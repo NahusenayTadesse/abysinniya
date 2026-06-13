@@ -3,12 +3,18 @@
 		Brain,
 		Bot,
 		Workflow,
-		CheckCircle2,
 		GraduationCap,
 		Building2,
-		Sparkles,
 		Quote,
-		HelpCircle
+		HelpCircle,
+		Globe2,
+		Smartphone,
+		Boxes,
+		GraduationCap as CourseIcon,
+		Settings2,
+		BadgeCheck,
+		Users,
+		ClipboardCheck
 	} from '@lucide/svelte';
 
 	let { children } = $props();
@@ -31,30 +37,132 @@
 		}
 	];
 
+	const services = [
+		{
+			title: 'AI Agents',
+			text: 'Autonomous assistants that work, qualify, and respond.',
+			icon: Bot
+		},
+		{
+			title: 'Smart Chatbots',
+			text: 'Conversational AI across web, Telegram, WhatsApp, and social channels.',
+			icon: HelpCircle
+		},
+		{
+			title: 'AI-Powered Websites',
+			text: 'Sites that search, personalize, and convert automatically.',
+			icon: Globe2
+		},
+		{
+			title: 'Mobile Apps with AI',
+			text: 'Intelligent apps for engagement and operations.',
+			icon: Smartphone
+		},
+		{
+			title: 'Business Automation',
+			text: 'Connected workflows that remove repetitive work.',
+			icon: Workflow
+		},
+		{
+			title: 'AI-Powered ERP',
+			text: 'Smart operations, sales, HR, finance, and inventory.',
+			icon: Boxes
+		},
+		{
+			title: 'Corporate AI Training',
+			text: 'Hands-on AI skills for teams and managers.',
+			icon: Users
+		},
+		{
+			title: 'Individual AI Courses',
+			text: 'Real-world AI education for professionals.',
+			icon: CourseIcon
+		},
+		{
+			title: 'Custom AI Solutions',
+			text: 'Tailored systems for your specific challenge.',
+			icon: Settings2
+		}
+	];
+
 	const packages = [
 		{
-			name: 'AI Foundation Program',
-			price: 'For beginners',
+			name: 'AI Essentials',
+			price: 'Beginner / 1-3 days',
 			icon: GraduationCap,
-			items: ['AI concepts', 'Prompt engineering', 'Machine learning basics', 'Practical exercises']
+			bestFor: 'Individuals and small groups starting with AI.',
+			items: [
+				'Introduction to AI and generative AI',
+				'ChatGPT and productivity tools',
+				'Prompt engineering basics',
+				'Practical exercises and templates',
+				'Designed for smaller budgets'
+			]
 		},
 		{
 			name: 'Professional AI Certification',
-			price: 'Career focused',
-			icon: Sparkles,
+			price: 'Career focused / several weeks',
+			icon: BadgeCheck,
+			bestFor: 'Learners who want structured training, projects, and certification.',
 			items: [
-				'Applied AI tools',
-				'Portfolio projects',
-				'Business automation',
+				'Advanced prompt engineering',
+				'Automation, AI agents, and app development',
+				'Assignments and mentorship',
+				'Portfolio or capstone project',
 				'Certificate of completion'
 			],
 			highlight: true
 		},
 		{
 			name: 'Business AI Transformation',
-			price: 'For companies',
+			price: 'For organizations / custom scope',
 			icon: Building2,
-			items: ['AI workflow audit', 'Team training', 'Automation strategy', 'Custom AI systems']
+			bestFor: 'Companies, institutions, and teams that need adoption support.',
+			items: [
+				'AI readiness assessment',
+				'Onsite business training',
+				'AI strategy and adoption roadmap',
+				'Workflow automation setup',
+				'Custom chatbot, voice agent, or AI solution'
+			]
+		}
+	];
+
+	const recommendationSteps = [
+		{
+			title: 'Who are you?',
+			text: 'Individual, business, government organization, NGO, school, training institution, startup, freelancer, or other.'
+		},
+		{
+			title: 'What do you want to learn?',
+			text: 'AI basics, generative AI, prompt engineering, productivity tools, research, presentations, data analysis, marketing, customer service, chatbots, voice agents, sales, automation, no-code AI, AI agents, AI apps, ethics, governance, and AI strategy.'
+		},
+		{
+			title: 'What is your main goal?',
+			text: 'Understand AI, improve career opportunities, earn a certificate, start an AI career, build applications, automate work, improve support, generate sales, or train employees.'
+		},
+		{
+			title: 'Current experience',
+			text: 'From never using AI tools to experienced technical professionals who have built chatbots or AI applications.'
+		},
+		{
+			title: 'What should be included?',
+			text: 'Instructor-led or onsite training, exercises, materials, prompt templates, tool recommendations, projects, certificates, roadmaps, chatbots, voice agents, and automation setup.'
+		}
+	];
+
+	const recommendationRules = [
+		{
+			package: 'AI Essentials',
+			text: 'Recommended for beginners who want an introduction to AI, generative AI, basic productivity, a 1-3 day program, no major project, a smaller budget, or an individual/small-group format.'
+		},
+		{
+			package: 'Professional AI Certification',
+			text: 'Recommended for visitors who want career development, certification, prompt engineering, automation, AI agents, application development, assignments, mentorship, or a capstone project.'
+		},
+		{
+			package: 'Business AI Transformation',
+			text: 'Recommended for organizations that need onsite business training, automation, AI readiness assessment, AI strategy, a roadmap, customized training, more than five participants, or a chatbot, voice agent, or automation solution.'
 		}
 	];
 
@@ -168,13 +276,15 @@ linear-gradient(135deg,#070b07_0%,#0b1209_35%,#10160d_65%,#070b07_100%)]"
 					<img
 						src="/logo.png"
 						alt="Abyssiniya AI"
-						class="h-1 shadow-lg shadow-orange-900/30 rounded-lg"
+						class="shadow-lg h-16 shadow-orange-900/30 rounded-lg"
 					/>
 				</div>
 			</a>
 
 			<div class="hidden items-center gap-8 text-sm text-[var(--muted)] md:flex">
 				<a href="#programs" class="hover:text-white">Programs</a>
+				<a href="#services" class="hover:text-white">Services</a>
+				<a href="#recommender" class="hover:text-white">Recommendation</a>
 				<a href="#packages" class="hover:text-white">Packages</a>
 				<a href="#impact" class="hover:text-white">Impact</a>
 				<a
@@ -279,6 +389,81 @@ linear-gradient(135deg,#070b07_0%,#0b1209_35%,#10160d_65%,#070b07_100%)]"
 		</div>
 	</section>
 
+	<!-- Services -->
+	<section id="services" class="mx-auto max-w-7xl px-6 py-20">
+		<div class="max-w-3xl">
+			<p class="font-bold text-[var(--gold)]">Nine Ways We Make Businesses Intelligent</p>
+			<h2 class="mt-3 text-4xl font-black md:text-5xl">
+				AI systems engineered for measurable outcomes.
+			</h2>
+			<p class="mt-5 leading-8 text-[var(--muted)]">
+				Every Abyssiniya AI system is designed, built, and launched as a standalone solution or as
+				part of one connected intelligent infrastructure.
+			</p>
+		</div>
+
+		<div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+			{#each services as service}
+				<article
+					class="rounded-[2rem] border border-[var(--stroke)] bg-[var(--glass)] p-7 backdrop-blur-2xl transition hover:-translate-y-1 hover:bg-white/[.08]"
+				>
+					<service.icon class="mb-6 h-10 w-10 text-[var(--amber)]" />
+					<h3 class="text-xl font-black">{service.title}</h3>
+					<p class="mt-4 leading-7 text-[var(--muted)]">{service.text}</p>
+				</article>
+			{/each}
+		</div>
+	</section>
+
+	<!-- Recommendation Logic -->
+	<section id="recommender" class="mx-auto max-w-7xl px-6 py-20">
+		<div class="grid gap-10 lg:grid-cols-[.9fr_1.1fr] lg:items-start">
+			<div>
+				<p class="font-bold text-[var(--orange)]">Get My Recommendation</p>
+				<h2 class="mt-3 text-4xl font-black md:text-5xl">
+					Help visitors find the right AI package.
+				</h2>
+				<p class="mt-5 leading-8 text-[var(--muted)]">
+					Use these questions to recommend AI Essentials, Professional AI Certification, or Business
+					AI Transformation based on the visitor's profile, interests, goals, experience,
+					inclusions, and participant count.
+				</p>
+			</div>
+
+			<div
+				class="rounded-[2rem] border border-[var(--stroke)] bg-[var(--glass)] p-6 backdrop-blur-2xl"
+			>
+				<div class="grid gap-4">
+					{#each recommendationSteps as step, i}
+						<div class="rounded-3xl border border-[var(--stroke-soft)] bg-black/20 p-5">
+							<div class="flex items-center gap-3">
+								<span
+									class="grid h-9 w-9 place-items-center rounded-xl bg-[var(--brand-grad)] text-sm font-black"
+								>
+									{i + 1}
+								</span>
+								<h3 class="font-black text-white">{step.title}</h3>
+							</div>
+							<p class="mt-4 leading-7 text-[var(--muted)]">{step.text}</p>
+						</div>
+					{/each}
+				</div>
+			</div>
+		</div>
+
+		<div class="mt-10 grid gap-6 lg:grid-cols-3">
+			{#each recommendationRules as rule}
+				<article
+					class="rounded-[2rem] border border-[var(--stroke)] bg-[var(--glass)] p-7 backdrop-blur-2xl"
+				>
+					<ClipboardCheck class="mb-5 h-9 w-9 text-[var(--amber)]" />
+					<h3 class="text-xl font-black">{rule.package}</h3>
+					<p class="mt-4 leading-7 text-[var(--muted)]">{rule.text}</p>
+				</article>
+			{/each}
+		</div>
+	</section>
+
 	<!-- Packages -->
 	<section id="packages" class="mx-auto max-w-7xl px-6 py-20">
 		<div class="text-center">
@@ -303,8 +488,10 @@ linear-gradient(135deg,#070b07_0%,#0b1209_35%,#10160d_65%,#070b07_100%)]"
 						</div>
 					{/if}
 
+					<pkg.icon class="mb-6 h-11 w-11 text-[var(--amber)]" />
 					<h3 class="text-2xl font-black text-white">{pkg.name}</h3>
 					<p class="mt-2 text-[var(--orange)]">{pkg.price}</p>
+					<p class="mt-4 leading-7 text-[var(--muted)]">{pkg.bestFor}</p>
 
 					<ul class="mt-8 space-y-4 text-[var(--muted)]">
 						{#each pkg.items as item}
@@ -409,6 +596,8 @@ linear-gradient(135deg,#070b07_0%,#0b1209_35%,#10160d_65%,#070b07_100%)]"
 			<p>© {new Date().getFullYear()} Abyssiniya AI PLC. All rights reserved.</p>
 			<div class="flex gap-6">
 				<a href="#programs" class="hover:text-white">Programs</a>
+				<a href="#services" class="hover:text-white">Services</a>
+				<a href="#recommender" class="hover:text-white">Recommendation</a>
 				<a href="#packages" class="hover:text-white">Packages</a>
 				<a href="#contact" class="hover:text-white">Contact</a>
 			</div>

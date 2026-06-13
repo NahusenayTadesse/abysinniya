@@ -25,21 +25,10 @@
 	>
 		<div>
 			<div class="mb-16 flex items-center gap-3">
-				<div
-					class="flex h-9 w-9 items-center justify-center rounded-md border border-[var(--stroke)] bg-[var(--glass)]"
-				>
-					<svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-						<path d="M2 9L9 2L16 9L9 16L2 9Z" stroke="var(--gold)" stroke-width="1.5" />
-						<path d="M5 9L9 5L13 9L9 13L5 9Z" fill="var(--green)" opacity="0.45" />
-					</svg>
-				</div>
-
-				<div>
-					<p class="text-lg tracking-[0.12em]" style="font-family: 'Cormorant Garamond', serif;">
-						ABYSSINNIYA AI
-					</p>
+				<a href="/">
+					<img src="/logo.png" alt="Abyssiniya AI" class="h-16 mb-4 rounded-lg" />
 					<p class="text-xs text-[var(--muted-2)]">Intelligent Systems</p>
-				</div>
+				</a>
 			</div>
 
 			<div class="max-w-sm">

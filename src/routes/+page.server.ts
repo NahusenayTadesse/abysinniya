@@ -17,6 +17,8 @@ export const actions: Actions = {
 	contact: async ({ request }) => {
 		const form = await superValidate(request, zod4(leadSchema));
 
+		console.log(form);
+
 		if (!form.valid) {
 			return message(form, {
 				type: 'error',
@@ -30,12 +32,17 @@ export const actions: Actions = {
 			phone,
 			company,
 			country,
+			applicantType,
 			packageSelected,
-			inquiryType,
-			campaignGoal,
-			productType,
+			topicsInterested,
+			mainGoal,
+			experienceLevel,
+			packageIncludes,
+			participantCount,
+			preferredTrainingMode,
 			budgetRange,
-			launchDate,
+			preferredStartDate,
+			recommendedPackage,
 			message: leadMessage,
 			source,
 			status,
@@ -49,12 +56,17 @@ export const actions: Actions = {
 				phone,
 				company,
 				country,
+				applicantType,
 				packageSelected,
-				inquiryType,
-				campaignGoal,
-				productType,
+				topicsInterested,
+				mainGoal,
+				experienceLevel,
+				packageIncludes,
+				participantCount,
+				preferredTrainingMode,
 				budgetRange,
-				launchDate,
+				preferredStartDate,
+				recommendedPackage,
 				message: leadMessage,
 				source,
 				status,
@@ -63,12 +75,12 @@ export const actions: Actions = {
 
 			return message(form, {
 				type: 'success',
-				text: 'Lead successfully submitted!'
+				text: 'Inquiry successfully submitted!'
 			});
 		} catch (err) {
 			return message(form, {
 				type: 'error',
-				text: 'Error adding lead: ' + (err instanceof Error ? err.message : 'Unknown error')
+				text: 'Error submitting inquiry: ' + (err instanceof Error ? err.message : 'Unknown error')
 			});
 		}
 	}
